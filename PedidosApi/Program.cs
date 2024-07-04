@@ -8,6 +8,8 @@ builder.Services.AddDbContext<PedidosApiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PedidosApiConnectionString"));
 });
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Add services to the container.
 
 builder.Services.AddControllers();
