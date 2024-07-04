@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using PedidosApi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<PedidosApiContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PedidosApiConnectionString"));
+});
 
 // Add services to the container.
 
