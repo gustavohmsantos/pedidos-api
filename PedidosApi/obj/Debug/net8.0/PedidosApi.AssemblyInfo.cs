@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PedidosApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5c3171ffab136ef847878e370b0f3510773f09a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f895a3d5dff63970f5ede3f19a2e03659c4a17b")]
 [assembly: System.Reflection.AssemblyProductAttribute("PedidosApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PedidosApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
