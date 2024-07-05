@@ -10,6 +10,6 @@ namespace PedidosApi.Data
             
         }
 
-        DbSet<ClienteModel> Clientes { get; set; }
+        public DbSet<ClienteModel> Clientes { get; set; }
     }
 }
