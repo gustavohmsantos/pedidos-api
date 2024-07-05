@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PedidosApi.Dtos
+namespace PedidosApi.Dtos.Cliente
 {
-    public class UpdateClienteDto
+    public class CreateClienteDto
     {
         [Required(ErrorMessage = "O nome completo é obrigatório!")]
         [StringLength(80, ErrorMessage = "O nome completo não pode exceder o limite de 80 caracteres!")]

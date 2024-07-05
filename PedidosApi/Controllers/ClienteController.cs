@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PedidosApi.Data;
-using PedidosApi.Dtos;
+using PedidosApi.Dtos.Cliente;
 using PedidosApi.Models;
 
 namespace PedidosApi.Controllers

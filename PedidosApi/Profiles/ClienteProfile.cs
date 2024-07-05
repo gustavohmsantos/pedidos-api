@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PedidosApi.Dtos;
+using PedidosApi.Dtos.Cliente;
 using PedidosApi.Models;
 
 namespace PedidosApi.Profiles

@@ -1,4 +1,4 @@
-﻿namespace PedidosApi.Dtos
+﻿namespace PedidosApi.Dtos.Cliente
 {
     public class ReadClienteDto
     {
