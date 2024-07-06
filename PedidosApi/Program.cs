@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<PedidosApiContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PedidosApiConnectionString"));
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("PedidosApiConnectionString"));
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -53,7 +53,7 @@ namespace PedidosApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("PedidosApi.Models.PedidoModel", b =>
@@ -71,7 +71,7 @@ namespace PedidosApi.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Pedidos");
+                    b.ToTable("Pedidos", (string)null);
                 });
 
             modelBuilder.Entity("PedidosApi.Models.PedidoModel", b =>
