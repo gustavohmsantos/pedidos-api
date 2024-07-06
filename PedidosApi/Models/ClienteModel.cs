@@ -30,5 +30,7 @@ namespace PedidosApi.Models
 
         [Required]
         public DateTime DataDeCadastro { get; set; } = DateTime.Now;
+
+        public virtual ICollection<PedidoModel> Pedidos { get; set; }
     }
 }
