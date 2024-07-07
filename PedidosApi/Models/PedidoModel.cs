@@ -12,5 +12,7 @@ namespace PedidosApi.Models
         public int ClienteId { get; set; }
 
         public virtual ClienteModel Cliente { get; set; }
+
+        public virtual ICollection<ItemPedidoModel> ItensPedido {get; set;}
     }
 }
