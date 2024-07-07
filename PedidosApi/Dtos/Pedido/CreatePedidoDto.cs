@@ -1,5 +1,4 @@
-﻿using PedidosApi.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PedidosApi.Dtos.Pedido
 {
