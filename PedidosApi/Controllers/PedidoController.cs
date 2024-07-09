@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PedidosApi.Data;
 using PedidosApi.Dtos.Pedido;
 using PedidosApi.Models;
-using System.Collections;
 
 namespace PedidosApi.Controllers
 {
@@ -35,19 +33,47 @@ namespace PedidosApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ReadPedidoDto>> ReadPedidos([FromQuery] int skip = 0, [FromQuery] int take = 50)
+        public async Task<ActionResult<ICollection<ReadPedidoDto>>> ReadPedidos([FromQuery] int skip = 0,
+            [FromQuery] int take = 50)
         {
-            return _mapper.Map<List<ReadPedidoDto>>(await _context.Pedidos.Skip(skip).Take(take).ToListAsync());
+            return Ok(_mapper
+                .Map<List<ReadPedidoDto>>(await _context.Pedidos
+                .Skip(skip).Take(take).ToListAsync()));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ReadPedidoPorId(int id)
+        public async Task<ActionResult<ReadPedidoDto>> ReadPedidoPorId(int id)
         {
             var pedido = await _context.Pedidos
                 .FirstOrDefaultAsync(pedido => pedido.Id == id);
             if (pedido == null) return NotFound();
-            ReadPedidoDto readPedidoDto = _mapper.Map<ReadPedidoDto>(pedido);
+            var readPedidoDto = _mapper.Map<ReadPedidoDto>(pedido);
             return Ok(readPedidoDto);
+        }
+
+        [HttpGet("BuscarPorIdCliente/{id}")]
+        public async Task<ActionResult<ICollection<ReadPedidoDto>>> ReadPedidosPorIdCliente(int id)
+        {
+            var cliente = await _context.Clientes
+                .FirstOrDefaultAsync(cliente => cliente.Id == id);
+            if (cliente == null) return NotFound();
+            var pedidos = await _context.Pedidos.Include(db => db.Cliente)
+                .Where(pedido => pedido.Cliente.Id == id)
+                .ToListAsync();
+
+            return Ok(_mapper.Map<List<ReadPedidoDto>>(pedidos));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePedido(int id, [FromBody] UpdatePedidoDto updatePedidoDto)
+        {
+            var pedido = await _context.Pedidos
+                .FirstOrDefaultAsync(pedido => pedido.Id == id);
+            if (pedido == null) return NotFound();
+
+            _mapper.Map(updatePedidoDto, pedido);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

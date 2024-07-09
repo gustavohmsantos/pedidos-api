@@ -9,7 +9,9 @@ namespace PedidosApi.Profiles
         public PedidoProfile()
         {
             CreateMap<CreatePedidoDto, PedidoModel>();
-            CreateMap<PedidoModel, ReadPedidoDto>();
+            CreateMap<PedidoModel, ReadPedidoDto>()
+                .ForMember(readPedidoDto => readPedidoDto.Itens, opt => opt.MapFrom(pedidoModel => pedidoModel.ItensPedido));
+            CreateMap<UpdatePedidoDto, PedidoModel>();
         }
     }
 }

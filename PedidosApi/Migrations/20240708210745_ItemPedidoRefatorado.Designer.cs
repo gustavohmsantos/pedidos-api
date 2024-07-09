@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PedidosApi.Data;
 
@@ -11,9 +12,11 @@ using PedidosApi.Data;
 namespace PedidosApi.Migrations
 {
     [DbContext(typeof(PedidosApiContext))]
-    partial class PedidosApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240708210745_ItemPedidoRefatorado")]
+    partial class ItemPedidoRefatorado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

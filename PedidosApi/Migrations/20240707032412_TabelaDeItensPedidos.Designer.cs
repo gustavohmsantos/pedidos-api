@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PedidosApi.Data;
 
@@ -11,9 +12,11 @@ using PedidosApi.Data;
 namespace PedidosApi.Migrations
 {
     [DbContext(typeof(PedidosApiContext))]
-    partial class PedidosApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240707032412_TabelaDeItensPedidos")]
+    partial class TabelaDeItensPedidos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,6 +64,12 @@ namespace PedidosApi.Migrations
 
             modelBuilder.Entity("PedidosApi.Models.ItemPedidoModel", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
@@ -70,7 +79,9 @@ namespace PedidosApi.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.HasKey("PedidoId", "ProdutoId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoId");
 
                     b.HasIndex("ProdutoId");
 
@@ -122,7 +133,7 @@ namespace PedidosApi.Migrations
                         .IsRequired();
 
                     b.HasOne("PedidosApi.Models.ProdutoModel", "Produto")
-                        .WithMany("ItensPedido")
+                        .WithMany()
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -149,11 +160,6 @@ namespace PedidosApi.Migrations
                 });
 
             modelBuilder.Entity("PedidosApi.Models.PedidoModel", b =>
-                {
-                    b.Navigation("ItensPedido");
-                });
-
-            modelBuilder.Entity("PedidosApi.Models.ProdutoModel", b =>
                 {
                     b.Navigation("ItensPedido");
                 });

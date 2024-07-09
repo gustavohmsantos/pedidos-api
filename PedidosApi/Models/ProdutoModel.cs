@@ -11,5 +11,7 @@ namespace PedidosApi.Models
         [Required(ErrorMessage = "O nome é obrigatório!")]
         [MaxLength(80, ErrorMessage = "O nome não pode exceder o limite de 80 caracteres!")]
         public string Nome { get; set; }
+
+        public virtual ICollection<ItemPedidoModel> ItensPedido { get; set; }
     }
 }

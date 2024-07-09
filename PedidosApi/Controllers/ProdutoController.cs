@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PedidosApi.Data;
-using PedidosApi.Dtos.Pedido;
 using PedidosApi.Dtos.Produto;
 using PedidosApi.Models;
 
@@ -32,14 +31,14 @@ namespace PedidosApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ReadProdutoDto>> ReadProdutos([FromQuery] int skip = 0, 
+        public async Task<ActionResult<IEnumerable<ReadProdutoDto>>> ReadProdutos([FromQuery] int skip = 0, 
             [FromQuery] int take = 50)
         {
-            return _mapper.Map<List<ReadProdutoDto>>(await _context.Produtos.Skip(skip).Take(take).ToListAsync());
+            return Ok(_mapper.Map<List<ReadProdutoDto>>(await _context.Produtos.Skip(skip).Take(take).ToListAsync()));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ReadProdutoPorId(int id)
+        public async Task<ActionResult<ReadProdutoDto>> ReadProdutoPorId(int id)
         {
             var produto = await _context.Produtos
                 .FirstOrDefaultAsync(produto => produto.Id == id);

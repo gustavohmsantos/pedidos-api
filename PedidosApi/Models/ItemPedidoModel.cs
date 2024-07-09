@@ -4,14 +4,6 @@ namespace PedidosApi.Models
 {
     public class ItemPedidoModel
     {
-        [Key]
-        [Required]
-        public int Id { get; set; }
-
-        [Required(ErrorMessage = "É necessário informar uma quantidade")]
-        [Range(1, 50, ErrorMessage = "A quantidade deve ser entre 1 e 50")]
-        public int Quantidade { get; set; }
-
         [Required]
         public int PedidoId { get; set; }
 
@@ -21,6 +13,8 @@ namespace PedidosApi.Models
         public int ProdutoId { get; set; }
         public virtual ProdutoModel Produto { get; set; }
 
-
+        [Required(ErrorMessage = "É necessário informar uma quantidade")]
+        [Range(1, 50, ErrorMessage = "A quantidade deve ser entre 1 e 50")]
+        public int Quantidade { get; set; }
     }
 }

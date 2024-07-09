@@ -30,14 +30,14 @@ namespace PedidosApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ReadClienteDto>> ReadClientes([FromQuery] int skip = 0,
+        public async Task<ActionResult<IEnumerable<ReadClienteDto>>> ReadClientes([FromQuery] int skip = 0,
         [FromQuery] int take = 50)
         {
-            return _mapper.Map<List<ReadClienteDto>>(await _context.Clientes.Skip(skip).Take(take).ToListAsync());
+            return Ok(_mapper.Map<List<ReadClienteDto>>(await _context.Clientes.Skip(skip).Take(take).ToListAsync()));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ReadClientePorId(int id)
+        public async Task<ActionResult<ReadClienteDto>> ReadClientePorId(int id)
         {
             var cliente = await _context.Clientes
                 .FirstOrDefaultAsync(cliente => cliente.Id == id);
